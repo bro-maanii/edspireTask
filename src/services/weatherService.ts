@@ -74,6 +74,7 @@ function normalizeOwmCurrent(raw: OwmCurrentResponse): CurrentWeather {
     feelsLikeC: raw.main.feels_like,
     humidity: raw.main.humidity,
     windSpeedKph: msToKph(raw.wind.speed),
+    windDirectionDeg: raw.wind.deg,
     condition,
     conditionLabel: weather?.description ?? CONDITION_LABELS[condition],
     isDaytime: weather?.icon.endsWith('d') ?? true,
@@ -142,7 +143,7 @@ function mapOwmConditionId(id: number): ConditionId {
 async function getOpenMeteoWeather(lat: number, lon: number, signal?: AbortSignal): Promise<WeatherData> {
   const url =
     `${OPEN_METEO_URL}?latitude=${lat}&longitude=${lon}` +
-    `&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,is_day` +
+    `&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,is_day` +
     `&daily=temperature_2m_max,temperature_2m_min,weather_code` +
     `&timezone=auto&forecast_days=${FORECAST_DAYS}`
 
@@ -168,6 +169,7 @@ function normalizeOpenMeteoCurrent(data: OpenMeteoResponse): CurrentWeather {
     feelsLikeC: data.current.apparent_temperature,
     humidity: data.current.relative_humidity_2m,
     windSpeedKph: data.current.wind_speed_10m,
+    windDirectionDeg: data.current.wind_direction_10m,
     condition,
     conditionLabel: CONDITION_LABELS[condition],
     isDaytime: data.current.is_day === 1,

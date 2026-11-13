@@ -17,6 +17,7 @@ export interface OwmCurrentResponse {
   }
   wind: {
     speed: number
+    deg?: number
   }
 }
 

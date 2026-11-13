@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import type { ChangeEvent, KeyboardEvent } from 'react'
 import { MIN_QUERY_LENGTH, useCitySearch } from '../hooks/useCitySearch'
 import type { City } from '../types/city'
@@ -33,6 +33,11 @@ export function CitySearch({ label = 'City', placeholder = 'Search for a city…
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
   const [blurError, setBlurError] = useState<string | null>(null)
 
+  const inputRef = useRef<HTMLInputElement>(null)
+  // Set right before we blur the input ourselves after a selection, so the
+  // resulting blur (which now sees a cleared input) skips validation.
+  const skipNextBlurValidationRef = useRef(false)
+
   const { cities, status, error, retry } = useCitySearch(query)
 
   const trimmedQuery = query.trim()
@@ -42,12 +47,14 @@ export function CitySearch({ label = 'City', placeholder = 'Search for a city…
   const activeOptionId = effectiveActiveIndex >= 0 && status === 'success' ? optionId(effectiveActiveIndex) : undefined
 
   function handleSelect(city: City) {
-    setQuery(formatCityLabel(city))
+    setQuery('')
     setSelectedCity(city)
     setIsOpen(false)
     setActiveIndex(-1)
     setBlurError(null)
     onSelect(city)
+    skipNextBlurValidationRef.current = true
+    inputRef.current?.blur()
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -71,6 +78,11 @@ export function CitySearch({ label = 'City', placeholder = 'Search for a city…
 
   function handleBlur() {
     setIsOpen(false)
+
+    if (skipNextBlurValidationRef.current) {
+      skipNextBlurValidationRef.current = false
+      return
+    }
 
     if (trimmedQuery.length === 0) {
       setBlurError('Enter a city name')
@@ -120,6 +132,7 @@ export function CitySearch({ label = 'City', placeholder = 'Search for a city…
       </label>
 
       <input
+        ref={inputRef}
         id={inputId}
         type="text"
         role="combobox"

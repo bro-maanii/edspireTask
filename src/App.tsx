@@ -1,19 +1,18 @@
-import { useState } from 'react'
 import { CitySearch } from './components/CitySearch'
+import { WeatherDashboard } from './components/WeatherDashboard'
+import { useLocalStorageState } from './hooks/useLocalStorageState'
 import type { City } from './types/city'
 
+const LAST_CITY_STORAGE_KEY = 'weatherboard.lastCity'
+
 function App() {
-  const [selectedCity, setSelectedCity] = useState<City | null>(null)
+  const [selectedCity, setSelectedCity] = useLocalStorageState<City | null>(LAST_CITY_STORAGE_KEY, null)
 
   return (
-    <main>
+    <main className="app">
       <h1>WeatherBoard</h1>
       <CitySearch onSelect={setSelectedCity} />
-      {selectedCity && (
-        <p>
-          Selected: {selectedCity.name}, {selectedCity.country} ({selectedCity.lat}, {selectedCity.lon})
-        </p>
-      )}
+      <WeatherDashboard city={selectedCity} onSelectCity={setSelectedCity} />
     </main>
   )
 }

@@ -6,6 +6,7 @@ export interface OpenMeteoCurrent {
   relative_humidity_2m: number
   weather_code: number
   wind_speed_10m: number
+  wind_direction_10m: number
   is_day: 0 | 1
 }
 

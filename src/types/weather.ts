@@ -40,6 +40,8 @@ export interface CurrentWeather {
   feelsLikeC: number
   humidity: number
   windSpeedKph: number
+  /** Meteorological degrees the wind is blowing from, when the provider supplies it. */
+  windDirectionDeg?: number
   condition: ConditionId
   conditionLabel: string
   isDaytime: boolean

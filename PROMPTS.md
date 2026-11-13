@@ -63,8 +63,38 @@ Make it look clean — I'll do a full design pass later but don't make it ugly.
 ```
 
 
-## Prompt 
+## Prompt - Weather display
+
+```
+1st prompt
+Now build the weather display. When a city is selected from CitySearch, fetch weather
+
+2nd prompt good look
+
+show:
+
+1. CurrentWeather card: city name, big temperature, condition text + icon, feels like, humidity, wind speed (with direction if available), and "Updated X min ago"
+2. Forecast: 5 day cards — day name (Today, Tue, Wed...), icon, max/min temp
+3. A useWeather(city) hook that handles loading, error, data, and refetch
+
+States:
+- Loading: skeleton placeholders with the same shape as the real cards (no layout shift), not just a spinner
+- Error: card that explains what failed based on ApiError kind + Retry button. Example for network: "Couldn't reach the weather service. Check your internet connection and try again."
+- Empty state (no city selected yet): friendly first-time screen asking to search a city, maybe with a few quick-pick cities like Karachi, London, Dubai, New York
+- If the data came from the Open-Meteo fallback, show a small subtle note "Data from backup source"
+
+3rd prompt 
+
+Save the last selected city in localStorage so it loads again on refresh.
+
+4th prompt:
+
+When I select a city from the dropdown, the input keeps the selected city name inside it and stays focused. Change it so that once a city is selected, the search input clears out completely and blurs, ready for the next search. Just make sure clearing it after a valid selection doesn't trigger the "Enter a city name" blur validation error.
 
 ```
 
+<!-- ## Prompt 
+
 ```
+
+``` -->
