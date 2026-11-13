@@ -227,3 +227,19 @@ Now act as a strict reviewer. Go through the whole codebase and check it against
 Also check: race conditions, memory leaks, any `any` types, console errors, accessibility issues. Fix the FAILs, and list what you changed.
 ```
 
+
+## Prompt 11 -readME
+
+```
+Write the README.md with:
+- Project title + one line description + Live URL placeholder
+- Features list
+- Tech stack
+- Setup instructions (clone, npm install, .env keys and where to get them, npm run dev, npm run build)
+- Architecture decisions: why the normalized weather type + fallback, why debounce + AbortController, why plain CSS with tokens, how offline caching works, folder structure
+- APIs used and what each one does
+- Known limitations: notifications without backend (use the paragraph from before), API keys are visible in the frontend bundle (in production I'd proxy them through a serverless function), GeoDB free tier rate limit
+- AI tool used: Cursor with Claude(model), and a link to PROMPTS.md
+
+Keep it clear and professional, not too long.
+```
