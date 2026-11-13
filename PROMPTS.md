@@ -112,6 +112,39 @@ Visible focus states for keyboard users
 After you're done, list anything that might break at 375px so I can check it.
 
 ```
+## Prompt 6 - Favourites
+
+```
+1st prompt
+Add Favourite Cities:
+
+A star/heart button on the current weather card to add or remove the city.Maximum 5 favourites. If they try to add a 6th, don't fail silently show a message and disable 
+
+
+2nd prompt
+Favourites panel for quick access 
+sidebar on desktop
+horizontal chips on mobile 
+Each shows city name + current temp
+
+
+3rd prompt
+Clicking a favourite loads its weather 
+
+
+4th prompt
+Removing a favourite must ask for confirmation use a small custom confirm dialog 
+
+
+5th prompt
+Persist in localStorage in a useFavourites hook
+If localStorage is not available (private mode, blocked, or quota full), wrap all access in try/catch, keep favourites in memory for the session, and show a small notice "Favourites won't be saved after you close this tab"
+No duplicates (compare by city id)
+
+
+```
+
+
 <!-- ## Prompt 
 
 ```

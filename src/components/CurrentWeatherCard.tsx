@@ -1,24 +1,36 @@
 import { useRelativeTime } from '../hooks/useRelativeTime'
+import type { UseFavouritesResult } from '../hooks/useFavourites'
 import type { City } from '../types/city'
 import type { WeatherData } from '../types/weather'
 import { conditionToIcon } from '../utils/weatherIcons'
 import { degreesToCompassDirection } from '../utils/wind'
+import { FavouriteButton } from './FavouriteButton'
 import './WeatherCard.css'
 
 interface CurrentWeatherCardProps {
   city: City
   data: WeatherData
+  favourites: UseFavouritesResult
 }
 
-export function CurrentWeatherCard({ city, data }: CurrentWeatherCardProps) {
+export function CurrentWeatherCard({ city, data, favourites }: CurrentWeatherCardProps) {
   const { current } = data
   const updatedLabel = useRelativeTime(current.observedAt)
 
   return (
     <section className="weatherCard" aria-label={`Current weather in ${city.name}`}>
-      <h2 className="weatherCard__city">
-        {city.name}, {city.country}
-      </h2>
+      <div className="weatherCard__header">
+        <h2 className="weatherCard__city">
+          {city.name}, {city.country}
+        </h2>
+        <FavouriteButton city={city} favourites={favourites} />
+      </div>
+
+      {!favourites.isStoragePersisted && (
+        <p className="weatherCard__storageNotice" role="status">
+          Favourites won't be saved after you close this tab
+        </p>
+      )}
 
       <div className="weatherCard__top">
         <span className="weatherCard__icon" aria-hidden="true">

@@ -9,7 +9,10 @@ export function WeatherSkeleton() {
       <span className="srOnly">Loading weather…</span>
 
       <section className="weatherCard" aria-hidden="true">
-        <span className="skeletonBar weatherCard__city" style={{ width: '60%' }} />
+        <div className="weatherCard__header">
+          <span className="skeletonBar weatherCard__city" style={{ width: '60%' }} />
+          <span className="skeletonBar" style={{ width: '44px', height: '44px', borderRadius: 'var(--radius-sm)' }} />
+        </div>
 
         <div className="weatherCard__top">
           <span className="skeletonBar weatherCard__icon" />
