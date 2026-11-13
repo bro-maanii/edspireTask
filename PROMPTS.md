@@ -42,3 +42,29 @@ Now build the API service layer in src/services. No UI yet.
 Put all types in src/types. Explain briefly how the fallback works when you're done.
 
 ```
+
+
+## Prompt 3 — City search with autocomplete
+
+```
+Build the CitySearch component with autocomplete using geoDbService.
+
+Requirements:
+- Debounce 300ms after user stops typing, minimum 2 characters before searching
+- Cancel the previous request when a new one starts (no race conditions — old results must never overwrite new ones)
+- Dropdown shows city, region, country with a flag or country code
+- Full keyboard support: arrow up/down, Enter to select, Escape to close. Use proper ARIA combobox roles.
+- States shown inside the dropdown: loading (small spinner), no results ("No cities match 'xyz' — check the spelling or try a bigger nearby city"), error with a Retry button, rate limit ("Too many searches, wait a second")
+- Validation on BLUR, not only submit: if the field is empty show "Enter a city name", if they typed text but didn't pick a suggestion show "Pick a city from the list so we get the right location"
+- Inline error under the input, red border, aria-describedby linked to the error
+- When a city is selected, call onSelect(city) prop
+
+Make it look clean — I'll do a full design pass later but don't make it ugly.
+```
+
+
+## Prompt 
+
+```
+
+```

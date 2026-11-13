@@ -1,0 +1,171 @@
+.citySearch {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.citySearch__label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.citySearch__input {
+  min-height: var(--min-touch-target);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+}
+
+.citySearch__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.citySearch__input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.citySearch__input--invalid {
+  border-color: var(--color-error);
+}
+
+.citySearch__panel {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.citySearch__listbox {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-xs) 0;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+
+.citySearch__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--min-touch-target);
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+}
+
+.citySearch__option:hover,
+.citySearch__option--active {
+  background: var(--color-surface-alt);
+}
+
+.citySearch__flag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.citySearch__cityInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.citySearch__cityName {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.citySearch__cityMeta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.citySearch__countryCode {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.citySearch__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.citySearch__status--error {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: var(--color-error);
+}
+
+.citySearch__statusText {
+  margin: 0;
+  flex: 1;
+  min-width: 10rem;
+}
+
+.citySearch__retryButton {
+  min-height: var(--min-touch-target);
+  min-width: var(--min-touch-target);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.citySearch__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: citySearchSpin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes citySearchSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.citySearch__error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+}
+
+@media (min-width: 768px) {
+  .citySearch {
+    max-width: 24rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .citySearch {
+    max-width: 28rem;
+  }
+}
