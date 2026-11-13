@@ -1,0 +1,37 @@
+@import './variables.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a,
+input,
+select {
+  font-family: inherit;
+}
+
+/*
+  Mobile-first breakpoints for the whole app:
+  - base styles below   = phones (< 768px)
+  - @media (min-width: 768px)  = tablet
+  - @media (min-width: 1280px) = desktop
+*/
