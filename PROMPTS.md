@@ -177,7 +177,37 @@ Tell me how to test above thinks.
 
 ```
 
-<!-- ## Prompt 
+## Prompt 8 - Daily notifications
+
+```
+prompt 1:
+
+Add a daily morning weather reminder notification.
+
+Using the best client-side approach:
+1. Periodic Background Sync API (Chrome, installed PWA) — register a daily sync, in the service worker check if it's past the user's chosen time today and not yet notified, then fetch weather for the last city and show a notification like "Good morning! Karachi: 28°C, Sunny"
+2. When the app is open, use a timer to fire at the chosen time
+3. When the app opens and today's reminder was missed, show it once
+
+
+prompt2:
+UI flow:
+- A "Daily reminder" settings section with a time picker (default 8:00 AM)
+- BEFORE triggering the browser permission prompt, show our own explainer: why we want it, what they'll get, how often. Only request permission when they click "Enable reminders"
+- If notifications are unsupported: show "Your browser doesn't support notifications" and hide the controls
+- If permission is denied: show how to re-enable it in browser settings. Nothing else in the app should break
+- Add a "Send test notification" button
+- Save time + enabled state in localStorage, and also store it in IndexedDB so the service worker can read it
+
+prompt3:
+The daily reminder notification isn't firing at all neither when the scheduled time arrives nor when I click the "Send test notification" button. Even though reminders are enabled and permission is granted, clicking "Send test notification" does nothing.
+
+Please debug and fix why notifications aren't triggering
+
+```
+
+<!-- 
+## Prompt 
 
 ```
 

@@ -1,5 +1,6 @@
 import './App.css'
 import { CitySearch } from './components/CitySearch'
+import { DailyReminderSettings } from './components/DailyReminderSettings'
 import { FavouritesPanel } from './components/FavouritesPanel'
 import { InstallAppButton } from './components/InstallAppButton'
 import { OfflineBanner } from './components/OfflineBanner'
@@ -39,6 +40,7 @@ function App() {
             onSelectCity={setSelectedCity}
           />
           {favourites.favourites.length === 0 && <QuickPicks onSelectCity={setSelectedCity} />}
+          <DailyReminderSettings city={selectedCity} />
         </aside>
 
         <main className="app__main">
