@@ -21,3 +21,24 @@ Don't build any features yet. Just the setup, then tell me how to run it.
 ```
 
 
+## Prompt 2 — API layer
+
+```
+Now build the API service layer in src/services. No UI yet.
+
+1. geoDbService.ts — search cities by name prefix using GeoDB Cities API (RapidAPI). Return id, name, region, country, countryCode, lat, lon. Note: free tier allows only 1 request per second, so handle 429 properly.
+
+2. weatherService.ts — get current weather + 5-day forecast for lat/lon.
+- Primary: OpenWeatherMap (/weather and /forecast endpoints, units metric)
+  - The OWM /forecast returns 3-hour steps, so group them by day and calculate daily min/max temp, and pick the midday condition as the day's icon
+  - Fallback: Open-Meteo (no key). If OWM fails with 429, 401 or a network error, automatically try Open-Meteo
+  - Both sources must return the SAME normalized type (WeatherData) so the UI doesn't care which one was used. Include a `source` field.
+  - Map Open-Meteo weather codes to the same condition names/icons we use for OWM
+
+3. A typed error class (ApiError) with kinds: 'network', 'rate_limit', 'not_found', 'auth', 'unknown', each with a user-friendly message and suggested action.
+
+4. Use AbortController so old requests can be cancelled.
+
+Put all types in src/types. Explain briefly how the fallback works when you're done.
+
+```
