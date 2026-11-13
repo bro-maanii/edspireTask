@@ -36,7 +36,11 @@ export function useInstallPrompt(): UseInstallPromptResult {
     deferredPrompt
       .prompt()
       .then(() => deferredPrompt.userChoice)
-      .then(() => setDeferredPrompt(null))
+      .catch(() => {
+        // The prompt can reject if it's no longer valid (e.g. already dismissed once);
+        // nothing to show the user for an install action they didn't get to finish.
+      })
+      .finally(() => setDeferredPrompt(null))
   }, [deferredPrompt])
 
   return {

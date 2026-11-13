@@ -219,9 +219,11 @@ prmpt 3
 Animated weather icons using CSS animations (sun slowly rotating, clouds drifting, rain falling).
 ```
 
-<!-- 
-## Prompt 
+
+## Prompt 10 -review
 
 ```
+Now act as a strict reviewer. Go through the whole codebase and check it against these requirements one by one, and tell me PASS / FAIL / PARTIAL for each with the file 
+Also check: race conditions, memory leaks, any `any` types, console errors, accessibility issues. Fix the FAILs, and list what you changed.
+```
 
-``` -->

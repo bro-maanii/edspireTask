@@ -97,7 +97,15 @@ export function CitySearch({
     }
 
     if (!selectedCity) {
-      setBlurError('Pick a city from the list so we get the right location')
+      if (status === 'error' && error) {
+        setBlurError(
+          error.kind === 'rate_limit' ? 'Too many searches, wait a second.' : `${error.message} ${error.action}`,
+        )
+      } else if (status === 'empty') {
+        setBlurError(`No cities match '${trimmedQuery}' — check the spelling or pick a different city.`)
+      } else {
+        setBlurError('Pick a city from the list so we get the right location')
+      }
       return
     }
 

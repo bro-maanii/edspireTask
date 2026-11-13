@@ -116,12 +116,17 @@ self.addEventListener('periodicsync', (event) => {
 self.addEventListener('notificationclick', (event) => {
   event.notification.close()
   event.waitUntil(
-    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientsList) => {
-      const existing = clientsList.find((client): client is WindowClient => 'focus' in client)
-      if (existing) {
-        return existing.focus()
-      }
-      return self.clients.openWindow('/')
-    }),
+    self.clients
+      .matchAll({ type: 'window', includeUncontrolled: true })
+      .then((clientsList) => {
+        const existing = clientsList.find((client): client is WindowClient => 'focus' in client)
+        if (existing) {
+          return existing.focus()
+        }
+        return self.clients.openWindow('/')
+      })
+      .catch(() => {
+        // Best effort — worst case the notification just closes without focusing a window.
+      }),
   )
 })

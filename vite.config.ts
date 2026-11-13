@@ -21,8 +21,11 @@ export default defineConfig({
         name: 'WeatherBoard',
         short_name: 'WeatherBoard',
         description: 'A calm, installable weather dashboard.',
-        theme_color: '#0f172a',
-        background_color: '#0f172a',
+        // Matches the light theme (the default before a user picks dark) —
+        // the manifest can't react live to the in-app theme toggle the way
+        // index.html's <meta name="theme-color"> does.
+        theme_color: '#f8fafc',
+        background_color: '#f8fafc',
         display: 'standalone',
         start_url: '/',
         icons: [

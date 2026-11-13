@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import { useDailyReminder } from '../hooks/useDailyReminder'
 import { useReminderSettings } from '../hooks/useReminderSettings'
 import type { City } from '../types/city'
@@ -8,6 +9,7 @@ interface DailyReminderSettingsProps {
 }
 
 export function DailyReminderSettings({ city }: DailyReminderSettingsProps) {
+  const timeInputId = useId()
   const reminder = useReminderSettings(city)
 
   useDailyReminder({
@@ -47,11 +49,11 @@ export function DailyReminderSettings({ city }: DailyReminderSettingsProps) {
             click below.
           </p>
 
-          <label className="dailyReminder__timeLabel" htmlFor="reminder-time">
+          <label className="dailyReminder__timeLabel" htmlFor={timeInputId}>
             Remind me at
           </label>
           <input
-            id="reminder-time"
+            id={timeInputId}
             type="time"
             className="dailyReminder__timeInput"
             value={reminder.settings.time}
@@ -70,11 +72,11 @@ export function DailyReminderSettings({ city }: DailyReminderSettingsProps) {
 
       {reminder.support === 'granted' && (
         <>
-          <label className="dailyReminder__timeLabel" htmlFor="reminder-time">
+          <label className="dailyReminder__timeLabel" htmlFor={timeInputId}>
             Remind me at
           </label>
           <input
-            id="reminder-time"
+            id={timeInputId}
             type="time"
             className="dailyReminder__timeInput"
             value={reminder.settings.time}
