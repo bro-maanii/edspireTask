@@ -206,6 +206,19 @@ Please debug and fix why notifications aren't triggering
 
 ```
 
+## Prompt 9
+
+```
+prmpt 1:
+Dark/light mode: default follows system preference (prefers-color-scheme), with a toggle (System / Light / Dark), saved in localStorage
+
+prompt 2:
+°C / °F toggle saved in localStorage. Convert on the client, don't refetch. Also convert wind speed (km/h vs mph).
+
+prmpt 3
+Animated weather icons using CSS animations (sun slowly rotating, clouds drifting, rain falling).
+```
+
 <!-- 
 ## Prompt 
 

@@ -1,14 +1,14 @@
 :root {
-  /* Color */
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-alt: #334155;
-  --color-text: #f1f5f9;
-  --color-text-muted: #94a3b8;
-  --color-accent: #38bdf8;
-  --color-error: #f87171;
-  --color-success: #4ade80;
-  --color-border: #334155;
+  /* Color — light theme (default) */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f5f9;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-accent: #0284c7;
+  --color-error: #dc2626;
+  --color-success: #16a34a;
+  --color-border: #e2e8f0;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -28,9 +28,41 @@
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.18);
 
   /* Layout */
   --min-touch-target: 44px;
+}
+
+/* Dark theme: applied when the system prefers dark and the user hasn't
+   explicitly forced light, or when the user has explicitly forced dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-surface-alt: #334155;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-accent: #38bdf8;
+    --color-error: #f87171;
+    --color-success: #4ade80;
+    --color-border: #334155;
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-alt: #334155;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-accent: #38bdf8;
+  --color-error: #f87171;
+  --color-success: #4ade80;
+  --color-border: #334155;
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
 }

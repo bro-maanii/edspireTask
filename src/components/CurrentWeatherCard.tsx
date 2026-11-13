@@ -2,20 +2,24 @@ import { useRelativeTime } from '../hooks/useRelativeTime'
 import type { UseFavouritesResult } from '../hooks/useFavourites'
 import type { City } from '../types/city'
 import type { WeatherData } from '../types/weather'
-import { conditionToIcon } from '../utils/weatherIcons'
+import { formatTemp, formatWindSpeed, type UnitSystem } from '../utils/units'
+import { conditionToIcon, getIconAnimation } from '../utils/weatherIcons'
 import { degreesToCompassDirection } from '../utils/wind'
 import { FavouriteButton } from './FavouriteButton'
 import './WeatherCard.css'
+import './WeatherIcon.css'
 
 interface CurrentWeatherCardProps {
   city: City
   data: WeatherData
   favourites: UseFavouritesResult
+  unit: UnitSystem
 }
 
-export function CurrentWeatherCard({ city, data, favourites }: CurrentWeatherCardProps) {
+export function CurrentWeatherCard({ city, data, favourites, unit }: CurrentWeatherCardProps) {
   const { current } = data
   const updatedLabel = useRelativeTime(current.observedAt)
+  const iconAnimation = getIconAnimation(current.condition, current.isDaytime)
 
   return (
     <section className="weatherCard" aria-label={`Current weather in ${city.name}`}>
@@ -33,17 +37,17 @@ export function CurrentWeatherCard({ city, data, favourites }: CurrentWeatherCar
       )}
 
       <div className="weatherCard__top">
-        <span className="weatherCard__icon" aria-hidden="true">
+        <span className={`weatherCard__icon animatedIcon--${iconAnimation}`} aria-hidden="true">
           {conditionToIcon(current.condition, current.isDaytime)}
         </span>
-        <span className="weatherCard__temp">{Math.round(current.tempC)}°</span>
+        <span className="weatherCard__temp">{formatTemp(current.tempC, unit)}</span>
         <span className="weatherCard__condition">{current.conditionLabel}</span>
       </div>
 
       <dl className="weatherCard__stats">
         <div className="weatherCard__stat">
           <dt>Feels like</dt>
-          <dd>{Math.round(current.feelsLikeC)}°</dd>
+          <dd>{formatTemp(current.feelsLikeC, unit)}</dd>
         </div>
         <div className="weatherCard__stat">
           <dt>Humidity</dt>
@@ -52,7 +56,7 @@ export function CurrentWeatherCard({ city, data, favourites }: CurrentWeatherCar
         <div className="weatherCard__stat">
           <dt>Wind</dt>
           <dd>
-            {Math.round(current.windSpeedKph)} km/h
+            {formatWindSpeed(current.windSpeedKph, unit)}
             {current.windDirectionDeg !== undefined ? ` ${degreesToCompassDirection(current.windDirectionDeg)}` : ''}
           </dd>
         </div>

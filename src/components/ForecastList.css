@@ -18,7 +18,7 @@
   min-height: var(--min-touch-target);
   padding: var(--space-md) var(--space-sm);
   background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   flex: 1;
   scroll-snap-align: start;
