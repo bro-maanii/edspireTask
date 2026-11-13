@@ -2,9 +2,11 @@
   display: flex;
   gap: var(--space-sm);
   list-style: none;
-  margin: var(--space-md) 0 0;
-  padding: 0;
+  margin: 0;
+  padding: var(--space-xs) 0;
   overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
 }
 
 .forecastCard {
@@ -12,26 +14,34 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-xs);
-  min-width: 4.5rem;
+  min-width: 4.75rem;
   min-height: var(--min-touch-target);
-  padding: var(--space-sm);
+  padding: var(--space-md) var(--space-sm);
   background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-md);
   flex: 1;
+  scroll-snap-align: start;
+  transition: border-color 0.15s ease;
+}
+
+.forecastCard:hover {
+  border-color: var(--color-accent);
 }
 
 .forecastCard__day {
   font-size: var(--font-size-sm);
+  font-weight: 500;
   color: var(--color-text-muted);
 }
 
 .forecastCard__icon {
-  width: 2rem;
-  height: 2rem;
+  width: 2.25rem;
+  height: 2.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   line-height: 1;
 }
 
@@ -39,6 +49,7 @@
   display: flex;
   gap: var(--space-xs);
   font-size: var(--font-size-sm);
+  font-variant-numeric: tabular-nums;
 }
 
 .forecastCard__max {

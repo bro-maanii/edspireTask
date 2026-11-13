@@ -1,21 +1,22 @@
-import { useWeather } from '../hooks/useWeather'
+import type { UseWeatherResult } from '../hooks/useWeather'
 import type { City } from '../types/city'
 import { CurrentWeatherCard } from './CurrentWeatherCard'
 import { EmptyWeatherState } from './EmptyWeatherState'
 import { ForecastList } from './ForecastList'
 import { WeatherErrorCard } from './WeatherErrorCard'
 import { WeatherSkeleton } from './WeatherSkeleton'
+import './WeatherDashboard.css'
 
 interface WeatherDashboardProps {
   city: City | null
-  onSelectCity: (city: City) => void
+  weather: UseWeatherResult
 }
 
-export function WeatherDashboard({ city, onSelectCity }: WeatherDashboardProps) {
-  const { data, status, error, refetch } = useWeather(city)
+export function WeatherDashboard({ city, weather }: WeatherDashboardProps) {
+  const { data, status, error, refetch } = weather
 
   if (status === 'empty') {
-    return <EmptyWeatherState onSelectCity={onSelectCity} />
+    return <EmptyWeatherState />
   }
 
   if (status === 'loading') {
@@ -28,10 +29,10 @@ export function WeatherDashboard({ city, onSelectCity }: WeatherDashboardProps) 
 
   if (status === 'success' && data && city) {
     return (
-      <>
+      <div className="weatherDashboard__content" key={city.id}>
         <CurrentWeatherCard city={city} data={data} />
         <ForecastList daily={data.daily} />
-      </>
+      </div>
     )
   }
 

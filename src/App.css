@@ -1,0 +1,92 @@
+.app {
+  min-height: 100vh;
+  background: var(--color-bg);
+  transition: background 0.6s ease;
+}
+
+.app[data-weather-mood='clear'] {
+  background: radial-gradient(circle at 20% -10%, rgba(56, 189, 248, 0.16), transparent 60%), var(--color-bg);
+}
+
+.app[data-weather-mood='cloudy'] {
+  background: radial-gradient(circle at 80% -10%, rgba(148, 163, 184, 0.14), transparent 60%), var(--color-bg);
+}
+
+.app[data-weather-mood='rain'] {
+  background: radial-gradient(circle at 50% -10%, rgba(59, 130, 246, 0.16), transparent 65%), var(--color-bg);
+}
+
+.app[data-weather-mood='snow'] {
+  background: radial-gradient(circle at 50% -10%, rgba(226, 232, 240, 0.12), transparent 65%), var(--color-bg);
+}
+
+.app[data-weather-mood='night'] {
+  background: radial-gradient(circle at 50% -20%, rgba(30, 41, 59, 0.55), transparent 70%), #0a0f1e;
+}
+
+.app__shell {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+}
+
+.app__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.app__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .app__shell {
+    padding: var(--space-lg);
+  }
+}
+
+@media (min-width: 1280px) {
+  .app__shell {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas:
+      'header header'
+      'sidebar main';
+    align-items: start;
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+  }
+
+  .app__header {
+    grid-area: header;
+  }
+
+  .app__sidebar {
+    grid-area: sidebar;
+    position: sticky;
+    top: var(--space-xl);
+  }
+
+  .app__main {
+    grid-area: main;
+  }
+}

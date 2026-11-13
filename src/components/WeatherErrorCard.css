@@ -5,7 +5,7 @@
   padding: var(--space-lg);
   background: var(--color-surface);
   border: 1px solid var(--color-error);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .weatherErrorCard__message {
@@ -24,4 +24,9 @@
   border-radius: var(--radius-sm);
   font-weight: 600;
   cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.weatherErrorCard__retryButton:hover {
+  opacity: 0.9;
 }

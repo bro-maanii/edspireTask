@@ -12,6 +12,11 @@ body,
   height: 100%;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
@@ -27,6 +32,14 @@ a,
 input,
 select {
   font-family: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible,
+[role='combobox']:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .srOnly {
@@ -47,3 +60,14 @@ select {
   - @media (min-width: 768px)  = tablet
   - @media (min-width: 1280px) = desktop
 */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

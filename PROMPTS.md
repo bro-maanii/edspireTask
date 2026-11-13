@@ -63,7 +63,7 @@ Make it look clean — I'll do a full design pass later but don't make it ugly.
 ```
 
 
-## Prompt - Weather display
+## Prompt 4 - Weather display
 
 ```
 1st prompt
@@ -93,6 +93,25 @@ When I select a city from the dropdown, the input keeps the selected city name i
 
 ```
 
+## Prompt 5 - Design Improment
+
+```
+Now let's do a proper design pass. Right now it looks generic. I want it to feel like a polished consumer product, calm, clean, confident, good typography hierarchy, not a FYP Type project.
+
+Font: Inter (or a similar clean font)
+Subtle background that changes slightly based on weather condition (clear/cloudy/rain/snow/night) — subtle, not cheesy
+Current weather card is the hero — big temperature, strong hierarchy
+Layout:
+  - 375px: single column, search on top, current weather, forecast as horizontal scroll row
+  - 768px: current weather full width, forecast grid of 5
+  - 1280px: sidebar on the left (search), main area on the right
+NO horizontal page scroll at any width (forecast row scroll is fine on mobile only)
+Subtle motion: fade/slide when data loads, respect prefers-reduced-motion
+Visible focus states for keyboard users
+
+After you're done, list anything that might break at 375px so I can check it.
+
+```
 <!-- ## Prompt 
 
 ```
