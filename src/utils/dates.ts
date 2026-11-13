@@ -12,3 +12,8 @@ export function formatDayLabel(dateKey: string): string {
   }
   return new Date(`${dateKey}T00:00:00`).toLocaleDateString(undefined, { weekday: 'short' })
 }
+
+/** Formats an ISO timestamp as a short local clock time, e.g. "2:30 PM". */
+export function formatSavedTime(isoTimestamp: string): string {
+  return new Date(isoTimestamp).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+}

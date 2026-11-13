@@ -30,6 +30,17 @@
   border-color: var(--color-error);
 }
 
+.citySearch__input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.citySearch__offlineNotice {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
 .citySearch__panel {
   position: absolute;
   top: calc(100% + var(--space-xs));

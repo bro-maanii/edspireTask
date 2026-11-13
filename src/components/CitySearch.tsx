@@ -9,6 +9,7 @@ interface CitySearchProps {
   label?: string
   placeholder?: string
   onSelect: (city: City) => void
+  disabled?: boolean
 }
 
 function formatCityLabel(city: City): string {
@@ -20,11 +21,17 @@ function formatCityLabel(city: City): string {
   return parts.join(', ')
 }
 
-export function CitySearch({ label = 'City', placeholder = 'Search for a city…', onSelect }: CitySearchProps) {
+export function CitySearch({
+  label = 'City',
+  placeholder = 'Search for a city…',
+  onSelect,
+  disabled = false,
+}: CitySearchProps) {
   const baseId = useId()
   const inputId = `${baseId}-input`
   const listboxId = `${baseId}-listbox`
   const errorId = `${baseId}-error`
+  const offlineNoticeId = `${baseId}-offline`
   const optionId = (index: number) => `${baseId}-option-${index}`
 
   const [query, setQuery] = useState('')
@@ -142,16 +149,23 @@ export function CitySearch({ label = 'City', placeholder = 'Search for a city…
         aria-autocomplete="list"
         aria-activedescendant={activeOptionId}
         aria-invalid={blurError ? true : undefined}
-        aria-describedby={blurError ? errorId : undefined}
+        aria-describedby={disabled ? offlineNoticeId : blurError ? errorId : undefined}
         className={blurError ? 'citySearch__input citySearch__input--invalid' : 'citySearch__input'}
         value={query}
         placeholder={placeholder}
         autoComplete="off"
+        disabled={disabled}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
       />
+
+      {disabled && (
+        <p id={offlineNoticeId} className="citySearch__offlineNotice" role="status">
+          Search isn't available offline. Reconnect to look up a new city.
+        </p>
+      )}
 
       {showPanel && (
         <div className="citySearch__panel">

@@ -1,0 +1,16 @@
+.installAppButton {
+  min-height: var(--min-touch-target);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.installAppButton:hover {
+  opacity: 0.9;
+}

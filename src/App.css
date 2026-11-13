@@ -36,6 +36,8 @@
 .app__header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
 }
 
 .app__title {

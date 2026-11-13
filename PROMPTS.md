@@ -144,6 +144,38 @@ if Favourites are present dont show Quick picks
 
 ```
 
+## Prompt 7 — PWA + offline
+
+```
+1 prompt
+Make it an installable PWA using vite-plugin-pwa.
+
+Web manifest: name "WeatherBoard", short_name, description, theme_color and background_color matching our design tokens, display: standalone, start_url, icons 192x192 and 512x512 (also a maskable one). Generate simple clean icons as PNG in public/
+
+
+2 prompt
+Service worker:
+  - Precache the app shell (HTML, JS, CSS, fonts, icons)
+  - Runtime cache for weather API responses with NetworkFirst strategy so the last viewed city's weather is available offline
+  - Also save the last WeatherData to localStorage as a backup, so even if the SW cache misses we can show it
+
+
+3 prompt
+offline mode:
+  - useOnlineStatus hook (navigator.onLine + online/offline events)
+  - When offline show a banner at the top: "You're offline — showing saved weather for Karachi from 2:30 PM". Hide when back online and refetch automatically
+  - Disable search when offline with a clear message why
+
+
+4 prompt
+Add an "Install app" button that uses the beforeinstallprompt event, only shown when installable
+
+
+5 prompt
+Tell me how to test above thinks.
+
+
+```
 
 <!-- ## Prompt 
 
