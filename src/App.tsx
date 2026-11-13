@@ -33,7 +33,7 @@ function App() {
             currentTempC={weather.data?.current.tempC ?? null}
             onSelectCity={setSelectedCity}
           />
-          <QuickPicks onSelectCity={setSelectedCity} />
+          {favourites.favourites.length === 0 && <QuickPicks onSelectCity={setSelectedCity} />}
         </aside>
 
         <main className="app__main">

@@ -140,7 +140,7 @@ Removing a favourite must ask for confirmation use a small custom confirm dialog
 Persist in localStorage in a useFavourites hook
 If localStorage is not available (private mode, blocked, or quota full), wrap all access in try/catch, keep favourites in memory for the session, and show a small notice "Favourites won't be saved after you close this tab"
 No duplicates (compare by city id)
-
+if Favourites are present dont show Quick picks
 
 ```
 
